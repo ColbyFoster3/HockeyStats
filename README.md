@@ -1,4 +1,4 @@
-# Document Heading
+# Welcome to HockeyStats
 
 This is a Python FastAPI & Uvicorn project to build a Hockey Stats tracker
 
