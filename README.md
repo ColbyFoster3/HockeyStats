@@ -1,26 +1,45 @@
 # Welcome to HockeyStats
 
-This is a Python FastAPI & Uvicorn project to build a Hockey Stats tracker
+This is a Python FastAPI & Uvicorn project to build a Hockey Stats tracker. This is a work in progess!
 
 ## Getting Started
 
-Activate virtual env:
+1. Activate the virtual environment:
+    Windows:
 
-```text
-venv\Scripts\activate
-```
+    ```text
+    venv\Scripts\activate
+    ```
 
-Start the server:
+    Mac:
 
-```text
-python -m app
-```
+    ```text
+    source venv/bin/activate
+    ```
 
-Or this:
+2. Install packages:
 
-```text
-venv\Scripts\python -m uvicorn app.main:app --reload
-```
+    ```text
+    pip install -r requirements.txt
+    ```
+
+3. Start the server:
+
+    ```text
+    uvicorn app.main:app --reload
+    ```
+
+    Or
+
+    ```text
+    python -m app
+    ```
+
+    Or
+
+    ```text
+    venv\Scripts\python -m uvicorn app.main:app --reload
+    ```
 
 The server runs at:
 <http://127.0.0.1:8000>
