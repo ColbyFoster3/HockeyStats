@@ -3,7 +3,8 @@ import httpx
 
 router = APIRouter(prefix="/v1/players", tags=["players"])
 
-@router.get("/get/{player_id}")
+# This route needs to be defined last due to the interpolation of the id
+@router.get("/{player_id}")
 async def read_player(player_id: int):
     async with httpx.AsyncClient() as client:
         try:

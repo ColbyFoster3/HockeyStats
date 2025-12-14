@@ -11,3 +11,5 @@ class Team(Base):
     abbreviation: Mapped[str | None] = mapped_column(String(3), nullable=True)
     api_web_nhle_abr: Mapped[str | None] = mapped_column(String(3), index=True, nullable=True)
     api_nhle_id: Mapped[int | None] = mapped_column(unique=True, index=True, nullable=True)
+    conference: Mapped[str] = mapped_column(String(50), nullable=True)
+    division: Mapped[str] = mapped_column(String(50), nullable=True)
