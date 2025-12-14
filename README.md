@@ -26,7 +26,7 @@ This is a Python FastAPI & Uvicorn project to build a Hockey Stats tracker. This
 3. Run migrations:
 
     Windows:
-    
+
     ```text
     venv\Scripts\python -m alembic upgrade head
     ```
@@ -81,6 +81,14 @@ The server runs at:
 6. Create file in app/services to contain the buisness logic
 7. Create the route in app/api
 8. Include the router in app/main.py
+
+### Seeding
+
+The database can be seeded in development by running the following:
+
+```text
+python seed_db.py
+```
 
 ## Open Swagger UI
 
