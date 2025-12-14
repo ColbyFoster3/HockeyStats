@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException
 import httpx
 
-router = APIRouter()
+router = APIRouter(prefix="/v1/players", tags=["players"])
 
-@router.get("/player/{player_id}")
+@router.get("/get/{player_id}")
 async def read_player(player_id: int):
     async with httpx.AsyncClient() as client:
         try:
@@ -14,7 +14,6 @@ async def read_player(player_id: int):
             return response.json()
 
         except httpx.HTTPStatusError as err:
-
             raise HTTPException(status_code=err.response.status_code, detail="Error fetching data")
         except httpx.RequestError as err:
             raise HTTPException(status_code=500, detail="Internal server error")

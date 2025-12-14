@@ -1,28 +1,36 @@
-from dotenv import load_dotenv
+import asyncio
 import os
-# seed.py
+from dotenv import load_dotenv
+
 from app.models.team import Team
-from app.core.database import Base, engine, SessionLocal
+from app.services.nhl.team_importer import TeamImporter
+from app.core.database import Base, engine2, AsyncSessionLocal
 
 load_dotenv()
 
-if os.environ.get("ENV") == "development":
+# Work in pogress, does not work on windows
+async def seed():
+    if os.environ.get("ENV") != "development":
+        print("Seeding is only allowed in development environment.")
+        return
+
     print("Seeding database...")
-    Base.metadata.create_all(bind=engine)
 
-    session = SessionLocal()
+    # Create tables
+    async with engine2.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
 
-    # Deleting Existing Data
-    session.query(Team).delete()
-    session.commit()
+    async with AsyncSessionLocal() as session:
+        # Delete existing data
+        await session.execute("DELETE FROM teams")
+        await session.commit()
 
-    # Seed data
-    session.add_all([
-        Team(id=1, name="Test", city="Test", abbreviation="TCT"),
-    ])
+        # Call NHL importer
+        team_importer = TeamImporter(db=session)
+        result = await team_importer.import_teams()
+        print(f"Inserted: {result['inserted']}, Skipped: {result['skipped']}")
 
-    session.commit()
-    session.close()
     print("Seeding complete.")
-else:
-    print("Seeding is only allowed in development environment.")
+
+# Run the async seed function
+asyncio.run(seed())

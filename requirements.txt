@@ -31,6 +31,7 @@ psycopg==3.3.2
 rich==14.2.0
 rich-toolkit==0.17.0
 rignore==0.7.6
+redis==7.1.0
 sentry-sdk==2.47.0
 shellingham==1.5.4
 sqlalchemy==2.0.45

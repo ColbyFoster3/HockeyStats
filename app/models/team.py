@@ -7,5 +7,7 @@ class Team(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(100), unique=True, index=True)
-    city: Mapped[str] = mapped_column(String(100))
-    abbreviation: Mapped[str] = mapped_column(String(5), unique=True)
+    city: Mapped[str] = mapped_column(String(100), nullable=True)
+    abbreviation: Mapped[str | None] = mapped_column(String(3), nullable=True)
+    api_web_nhle_abr: Mapped[str | None] = mapped_column(String(3), index=True, nullable=True)
+    api_nhle_id: Mapped[int | None] = mapped_column(unique=True, index=True, nullable=True)

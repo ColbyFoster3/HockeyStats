@@ -90,6 +90,12 @@ The database can be seeded in development by running the following:
 python seed_db.py
 ```
 
+### Create new venv
+
+```text
+python -m venv venv
+```
+
 ## Open Swagger UI
 
 - <http://127.0.0.1:8000/docs>
