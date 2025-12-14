@@ -23,7 +23,22 @@ This is a Python FastAPI & Uvicorn project to build a Hockey Stats tracker. This
     pip install -r requirements.txt
     ```
 
-3. Start the server:
+3. Run migrations:
+
+    Windows:
+    
+    ```text
+    venv\Scripts\python -m alembic upgrade head
+    ```
+
+    Mac:
+
+    ```text
+    python -m alembic upgrade head
+
+    ```
+
+4. Start the server:
 
     ```text
     uvicorn app.main:app --reload
